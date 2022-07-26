@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE configuration PUBLIC './/mybatis.org//DTD config 3.0//EN'
+	'http://mybatis.org/dtd/mybatis-3-config.dtd'>
+<configuration> <!--주석-->
+	<properties resource='config/jdbc.properties'>
+		<property name='driver' value='oracle.jdbc.driver.OracleDriver'/>
+	</properties>
+	
+	<typeAliases> <!--별명 설정 / package name을 사용할경우 해당 패키지 이하에 자동 별명이 생기는데 다른패키지와 별명이 같을경우 충돌이 생길수있음으로 @Alias로 임의로 별명을 바꿀수있다.-->
+		<typeAlias type='ch02.domain.User' alias='user'/>
+		<package name='ch03.domain'/>
+	</typeAliases>
+	
+	<environments default='development'>
+		<environment id='development'>
+			<transactionManager type='JDBC'/>
+			<dataSource type='POOLED'>		   <!--${property name} = property value / EL(Expression Language -->	
+				<property name='driver' value='${driver}'/>
+				<property name='url' value='${url}'/>
+				<property name='username' value='${username}'/>
+				<property name='password' value='${password}'/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<mapper resource='ch02/ex01/sqlMap.xml'/>
+		<mapper resource='ch02/ex02/sqlMap.xml'/>
+		<mapper resource='ch02/ex03/sqlMap.xml'/>
+		<mapper resource='ch02/ex04/sqlMap.xml'/>
+		<mapper resource='ch02/ex05/sqlMap.xml'/>
+		<mapper resource='ch03/ex01/sqlMap.xml'/>
+		<mapper resource='ch03/ex02/sqlMap.xml'/>
+	</mappers>
+</configuration>	
